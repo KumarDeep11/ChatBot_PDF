@@ -1,0 +1,70 @@
+/* --- Base & Theming (same as before) --- */
+:root {
+  --background-color: #131314;
+  --surface-color: #1e1f20;
+  --text-color: #e3e3e3;
+  --text-secondary-color: #9e9e9e;
+  --accent-gradient: linear-gradient(90deg, #8E47FF, #4785FF);
+}
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--background-color); color: var(--text-color); display: flex; justify-content: center; }
+
+/* --- Main Layout (same as before) --- */
+.app-container { display: flex; flex-direction: column; height: 100vh; width: 100%; max-width: 800px; margin: 0 auto; position: relative; }
+.main-content { flex-grow: 1; overflow-y: auto; padding: 20px 20px 120px 20px; }
+
+/* --- Welcome Screen (same as before) --- */
+.welcome-screen { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center; }
+.welcome-title .gradient-text { font-size: 4em; font-weight: bold; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; }
+.welcome-title p { font-size: 1.2em; color: var(--text-secondary-color); margin-top: 10px; }
+
+/* --- Input Area (UPDATED) --- */
+.input-area { position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 20px; }
+.input-form { display: flex; align-items: center; gap: 10px; padding: 10px; background-color: var(--surface-color); border-radius: 28px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+.prompt-input { flex-grow: 1; background-color: transparent; border: none; color: var(--text-color); font-size: 1em; padding: 10px; transition: box-shadow 0.2s; }
+.prompt-input:focus { outline: none; }
+.icon-button { display: flex; justify-content: center; align-items: center; background: none; border: none; color: var(--text-secondary-color); font-size: 1.5em; cursor: pointer; border-radius: 50%; width: 40px; height: 40px; transition: background-color 0.2s, transform 0.2s; }
+.icon-button:hover:not(:disabled) { background-color: rgba(255, 255, 255, 0.1); transform: scale(1.1); }
+.icon-button:disabled { color: #555; cursor: not-allowed; }
+.send-button { font-size: 1.2em; }
+
+/* --- NEW: File Chip Style --- */
+.file-name-chip {
+    font-size: 0.9em;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #383838;
+    padding: 6px 12px;
+    border-radius: 16px;
+    cursor: default;
+    transition: background-color 0.2s;
+}
+
+/* --- Result & Chat Display (UPDATED) --- */
+.result-display { display: flex; flex-direction: column; gap: 24px; }
+.chat-entry { display: flex; align-items: flex-start; gap: 16px; animation: fadeIn 0.5s ease-in-out; }
+.chat-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; background-color: var(--surface-color); }
+.chat-content p { margin: 0; }
+.chat-content p:first-child { font-weight: bold; color: var(--text-secondary-color); margin-bottom: 8px; }
+.chat-content pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; line-height: 1.6; margin: 0; }
+
+/* --- NEW: Typing Cursor --- */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: var(--text-color);
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- Loader (same as before) --- */
+.loader-container { display: flex; align-items: center; gap: 10px; }
+.loader-bar { width: 100px; height: 2px; background: var(--accent-gradient); background-size: 200% 100%; animation: loading-animation 1.5s infinite linear; }
+@keyframes loading-animation { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* --- Error Message (same as before) --- */
+.error-message { padding: 12px; background-color: #4d2525; color: #ffc2c2; border: 1px solid #c62828; border-radius: 8px; text-align: center; }
